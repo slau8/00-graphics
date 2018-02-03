@@ -1,20 +1,20 @@
 width = 500
 height = 500
 
-def main():
-    file = open("image.ppm","w+")
-    file.write("P3\n")
-    file.write(str(width) + " " + str(height) + "\n")
-    file.write("255\n")
-    draw(file)
-
 def draw(file):
-    b = 225
+    b = 255
     for y in range(height):
         line = ""
         r = g = 255 * y / height
         for x in range(width):
-            line += str(r) + " " + str(g) + " " + str(b) + "  "
+            line += "%d %d %d " % (r,g,b)
         file.write(line + "\n")
+
+def main():
+    file = open("image.ppm","w+")
+    file.write("P3\n")
+    file.write("%d %d\n" % (width, height))
+    file.write("255\n")
+    draw(file)
 
 main()
